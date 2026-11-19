@@ -1,5 +1,5 @@
 {
-  "generado": "2026-11-19T01:51:38.728Z",
+  "generado": "2026-11-19T01:59:27.147Z",
   "temporada": 2026,
   "externos": [
     {
@@ -7,7 +7,7 @@
       "nombre": "Quilmes",
       "nombreLargo": "Quilmes Atlético Club",
       "detalle": "Fútbol · Básquet · Hockey · Natación",
-      "url": "https://COMPLETAR-CON-EL-LINK-DE-QUILMES.vercel.app/",
+      "url": "https://quilmes-sigma.vercel.app/",
       "escudo": "escudos/quilmes.svg"
     }
   ],
@@ -594,7 +594,7 @@
               "estado": "Finalizado"
             }
           ],
-          "actualizado": "2026-11-19T01:51:38.728Z",
+          "actualizado": "2026-11-19T01:59:27.147Z",
           "desactualizado": false
         },
         {
@@ -1158,7 +1158,7 @@
               "estado": "Finalizado"
             }
           ],
-          "actualizado": "2026-11-19T01:51:38.728Z",
+          "actualizado": "2026-11-19T01:59:27.147Z",
           "desactualizado": false
         }
       ]
@@ -1757,7 +1757,7 @@
               "estado": "Finalizado"
             }
           ],
-          "actualizado": "2026-11-19T01:51:38.728Z",
+          "actualizado": "2026-11-19T01:59:27.147Z",
           "desactualizado": false
         },
         {
@@ -2321,7 +2321,7 @@
               "estado": "Finalizado"
             }
           ],
-          "actualizado": "2026-11-19T01:51:38.728Z",
+          "actualizado": "2026-11-19T01:59:27.147Z",
           "desactualizado": false
         }
       ]

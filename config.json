@@ -26,12 +26,20 @@
       "nombre": "Quilmes",
       "nombreLargo": "Quilmes Atlético Club",
       "detalle": "Fútbol · Básquet · Hockey · Natación",
-      "url": "https://COMPLETAR-CON-EL-LINK-DE-QUILMES.vercel.app/",
+      "url": "https://quilmes-sigma.vercel.app/",
       "escudo": "escudos/quilmes.svg"
     }
   ],
   "divisiones": [
-    { "id": "primera", "titulo": "Primera", "patron": "- Superior$" },
-    { "id": "intermedia", "titulo": "Intermedia", "patron": "- Intermedia$" }
+    {
+      "id": "primera",
+      "titulo": "Primera",
+      "patron": "- Superior$"
+    },
+    {
+      "id": "intermedia",
+      "titulo": "Intermedia",
+      "patron": "- Intermedia$"
+    }
   ]
 }
