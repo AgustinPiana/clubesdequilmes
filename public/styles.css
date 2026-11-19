@@ -528,3 +528,7 @@ img.escudo { aspect-ratio: auto; height: auto; object-fit: contain; }
 .inicio .club { border-bottom: 0; }
 @media (max-width: 759px) { .inicio .club + .club { border-top: 1px solid var(--linea); } }
 .club-detalle { font-weight: 600; letter-spacing: .02em; }
+/* Escudos más altos que anchos (Don Bosco): que siempre entren en su recuadro */
+.club-escudo .escudo { width: auto; height: auto; max-width: 150px; max-height: 150px; }
+.portada .escudo.grande { height: auto; max-height: clamp(76px, 19vw, 170px); width: auto; max-width: clamp(64px, 16vw, 150px); }
+.logo-club .escudo { width: auto; max-width: 46px; }
