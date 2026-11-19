@@ -1,0 +1,42 @@
+name: Actualizar datos
+
+on:
+  schedule:
+    # GitHub usa hora UTC (Argentina = UTC-3). Objetivo en Argentina: 09, 13, 17, 20, 22 y 00 h.
+    # GitHub atrasa o saltea las tareas programadas en punto, así que corre a los :07 y repite a los :37.
+    - cron: '7 1,3,12,16,20,23 * * *'
+    - cron: '37 1,3,12,16,20,23 * * *'
+  workflow_dispatch: # botón "Run workflow" para correrlo a mano
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar-datos
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Juntar datos
+        run: npm run update
+
+      - name: Guardar cambios
+        run: |
+          if git diff --quiet -- public/data; then
+            echo "Sin cambios en los datos."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data
+          git commit -m "Datos actualizados $(TZ=America/Argentina/Buenos_Aires date '+%d/%m %H:%M')"
+          git push

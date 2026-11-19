@@ -1,0 +1,11 @@
+{
+  "name": "agenda-clubes",
+  "version": "1.0.0",
+  "description": "Fixture, resultados y tablas de rugby de clubes de la URBA",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "update": "node scripts/update.js"
+  }
+}
