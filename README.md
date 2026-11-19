@@ -44,4 +44,4 @@ npm test         # prueba el cálculo de la tabla y los partidos
 npx serve public # ver la página en http://localhost:3000
 ```
 
-Los escudos de CUQ y Don Bosco son los que publica la URBA; el de Quilmes viene de Wikimedia Commons (dominio público).
+El escudo de CUQ es el que publica la URBA; el de Don Bosco es el de rugby de su sitio oficial (donboscorugby.org), recortado con fondo transparente; el de Quilmes viene de Wikimedia Commons (dominio público).

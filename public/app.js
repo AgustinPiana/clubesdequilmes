@@ -172,13 +172,12 @@ const titulo = (n, texto, extra = '') => `<header class="franja"><div class="con
 
 // ---------- Portada: los escudos ----------
 function tarjetaClub(c) {
-  const externo = !!c.url;
   return `<a class="club" href="${esc(c.url || `/${c.id}`)}" style="--club:${esc(c.color || 'var(--fondo-azul)')}">
       <span class="club-escudo">${escudo(c)}</span>
       <span class="club-nombre">${esc(c.nombre)}</span>
       <span class="club-largo chica">${esc(c.nombreLargo || '')}</span>
       <span class="club-detalle">${esc(c.deportes || '')}</span>
-      <span class="club-ir">Ir al sitio <span aria-hidden="true">${externo ? '↗' : '→'}</span></span>
+      <span class="club-ir">Ir al sitio <span aria-hidden="true">→</span></span>
     </a>`;
 }
 
