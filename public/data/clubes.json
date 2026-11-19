@@ -1,14 +1,14 @@
 {
-  "generado": "2026-11-19T02:19:45.947Z",
+  "generado": "2026-11-19T02:34:14.123Z",
   "temporada": 2026,
   "externos": [
     {
       "id": "quilmes",
       "nombre": "Quilmes",
       "nombreLargo": "Quilmes Atlético Club",
-      "detalle": "Fútbol · Básquet · Hockey · Natación",
       "url": "https://quilmes-sigma.vercel.app/",
-      "escudo": "escudos/quilmes.svg"
+      "escudo": "escudos/quilmes.svg",
+      "deportes": "Fútbol · Básquet · Hockey · Natación"
     }
   ],
   "clubes": [
@@ -20,6 +20,7 @@
       "escudo": "escudos/cuq.png",
       "color": "#1f5aa6",
       "colorClaro": "#5aa0e0",
+      "deportes": "Rugby",
       "secciones": [
         {
           "id": "cuq-primera",
@@ -594,7 +595,7 @@
               "estado": "Finalizado"
             }
           ],
-          "actualizado": "2026-11-19T02:19:45.947Z",
+          "actualizado": "2026-11-19T02:34:14.123Z",
           "desactualizado": false
         },
         {
@@ -1158,7 +1159,7 @@
               "estado": "Finalizado"
             }
           ],
-          "actualizado": "2026-11-19T02:19:45.947Z",
+          "actualizado": "2026-11-19T02:34:14.123Z",
           "desactualizado": false
         }
       ]
@@ -1171,6 +1172,7 @@
       "escudo": "escudos/donbosco.png",
       "color": "#d7262e",
       "colorClaro": "#1d3a8a",
+      "deportes": "Rugby",
       "secciones": [
         {
           "id": "donbosco-primera",
@@ -1757,7 +1759,7 @@
               "estado": "Finalizado"
             }
           ],
-          "actualizado": "2026-11-19T02:19:45.947Z",
+          "actualizado": "2026-11-19T02:34:14.123Z",
           "desactualizado": false
         },
         {
@@ -2321,7 +2323,7 @@
               "estado": "Finalizado"
             }
           ],
-          "actualizado": "2026-11-19T02:19:45.947Z",
+          "actualizado": "2026-11-19T02:34:14.123Z",
           "desactualizado": false
         }
       ]

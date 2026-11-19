@@ -3,32 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Agenda de Clubes</title>
-  <meta name="description" content="Fixture, resultados y tablas de Quilmes, el Círculo Universitario de Quilmes y Don Bosco." />
+  <title>Soy de Quilmes</title>
+  <meta name="description" content="Fixture, resultados y tablas de los clubes de Quilmes." />
   <meta name="theme-color" content="#ffffff" />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="preload" href="fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/styles.css" />
   <script>document.documentElement.classList.add('js'); if (/[?&]static(&|=|$)/.test(location.search)) document.documentElement.classList.add('static');</script>
 </head>
 <body>
-  <header class="cabecera">
-    <a class="marca" href="#inicio" aria-label="Agenda de Clubes, ir al inicio">
-      <span class="marca-logo" aria-hidden="true">AC</span>
-      <span><strong>Agenda</strong><small>de clubes</small></span>
-    </a>
-    <nav class="nav" id="nav" aria-label="Clubes"></nav>
-    <p class="edicion" id="actualizado">Cargando…</p>
+  <header class="cabecera" id="cabecera">
+    <div class="logo" aria-label="Soy de Quilmes">
+      <img src="/logo.svg" alt="" width="40" height="40" />
+      <span><small>Soy de</small><strong>Quilmes</strong></span>
+    </div>
   </header>
 
   <main id="contenido" aria-live="polite"></main>
 
-  <footer class="azul"><div class="pie">
-    <span class="marca-logo" aria-hidden="true">AC</span>
-    <p>Hecho por un hincha, sin relación oficial con los clubes.<br>Datos de la URBA, actualizados seis veces por día. La tabla se calcula con los resultados publicados.</p>
-    <p class="pie-ano">Rugby · <span id="ano"></span></p>
-  </div></footer>
-
-  <script src="app.js" type="module"></script>
+  <script src="/app.js" type="module"></script>
 </body>
 </html>

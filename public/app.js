@@ -1,4 +1,4 @@
-// Agenda de Clubes: lee data/clubes.json y arma la portada de escudos y la página de cada club.
+// Soy de Quilmes: lee /data/clubes.json y arma la portada de escudos (/) y la página de cada club (/cuq, /donbosco).
 
 const TZ = 'America/Argentina/Buenos_Aires';
 const $contenido = document.getElementById('contenido');
@@ -19,7 +19,7 @@ function fechaBreve(iso) {
 const dos = (n) => String(n).padStart(2, '0');
 const largo = (t) => Math.max(5, ...String(t).split(/\s+/).map((w) => w.length));
 const norm = (t) => String(t || '').toLowerCase().normalize('NFD').replace(/[^a-z0-9]/g, '');
-const escudo = (c, clase = '') => `<img class="escudo ${clase}" src="${esc(c.escudo)}" alt="" loading="lazy" />`;
+const escudo = (c, clase = '') => `<img class="escudo ${clase}" src="/${esc(c.escudo)}" alt="" loading="lazy" />`;
 
 function resultado(p) {
   if (!p.jugado || p.gl == null || p.gv == null) return null;
@@ -172,33 +172,29 @@ const titulo = (n, texto, extra = '') => `<header class="franja"><div class="con
 
 // ---------- Portada: los escudos ----------
 function tarjetaClub(c) {
-  const sec = c.secciones?.[0];
-  const f = sec ? filaClub(sec) : null;
-  const ult = sec ? jugados(sec)[0] : null;
-  const detalle = c.detalle || (sec ? `Rugby · ${sec.competencia}` : 'Rugby');
-  return `<a class="club" href="${esc(c.url || `#${c.id}`)}" style="--club:${esc(c.color || 'var(--fondo-azul)')}">
+  const externo = !!c.url;
+  return `<a class="club" href="${esc(c.url || `/${c.id}`)}" style="--club:${esc(c.color || 'var(--fondo-azul)')}">
       <span class="club-escudo">${escudo(c)}</span>
       <span class="club-nombre">${esc(c.nombre)}</span>
       <span class="club-largo chica">${esc(c.nombreLargo || '')}</span>
-      <span class="club-detalle">${esc(detalle)}${f ? ` · ${f.pos}°` : ''}</span>
-      ${ult ? `<span class="club-ult"><span class="r ${resultado(ult)}">${resultado(ult)}</span>${esc(marcadorPropio(ult))} con ${esc(rival(ult))}</span>` : ''}
-      <span class="club-ir" aria-hidden="true">${c.url ? 'Ir al sitio ↗' : 'Ver partidos →'}</span>
+      <span class="club-detalle">${esc(c.deportes || '')}</span>
+      <span class="club-ir">Ir al sitio <span aria-hidden="true">${externo ? '↗' : '→'}</span></span>
     </a>`;
 }
 
 function vistaPortada() {
   const todos = [...(datos.externos || []), ...datos.clubes];
-  return `<section class="seccion" style="--i:0">
-      ${titulo('', 'Elegí tu club', `Temporada ${esc(datos.temporada)}`)}
-      <div class="contenedor"><div class="clubes">${todos.map(tarjetaClub).join('')}</div></div>
-    </section>`;
+  return `<section class="inicio" style="--i:0"><div class="contenedor">
+      <h1 class="inicio-titulo">Elegí tu club</h1>
+      <div class="clubes">${todos.map(tarjetaClub).join('')}</div>
+    </div></section>`;
 }
 
 // ---------- Página de un club ----------
 function vistaClub(c) {
   const secs = c.secciones || [];
   const indice = secs.length > 1 ? `<nav class="indice" aria-label="Divisiones"><div class="contenedor"><ol>${secs
-    .map((s, i) => { const f = filaClub(s); return `<li><a href="#${esc(c.id)}" data-ir="eq-${esc(s.id)}"><span>${dos(i + 1)}</span>${esc(s.titulo)}${f ? `<b>${f.pos}°</b>` : ''}</a></li>`; }).join('')}</ol></div></nav>` : '';
+    .map((s, i) => { const f = filaClub(s); return `<li><a href="/${esc(c.id)}" data-ir="eq-${esc(s.id)}"><span>${dos(i + 1)}</span>${esc(s.titulo)}${f ? `<b>${f.pos}°</b>` : ''}</a></li>`; }).join('')}</ol></div></nav>` : '';
   return `<div class="portada-franja azul" style="--i:0"><div class="contenedor portada club-portada">
       <h1 style="--n:${largo(c.nombre)}">${esc(c.nombre)}<small>${esc(c.nombreLargo || '')} · Rugby</small></h1>${escudo(c, 'grande')}</div></div>${indice}
     <div class="contenedor">${secs.length ? secs.map((s, i) => seccionHTML(s, c, i)).join('') : '<p class="vacio">Todavía no hay datos de este club.</p>'}</div>`;
@@ -235,25 +231,25 @@ function seccionHTML(sec, c, i) {
     </section>`;
 }
 
-// ---------- Navegación ----------
-function menu(actual) {
-  const items = [['inicio', 'Inicio'], ...datos.clubes.map((c) => [c.id, c.nombre])];
-  document.getElementById('nav').innerHTML = items
-    .map(([id, n], i) => `<a href="#${id}" data-vista="${id}"${id === actual ? ' aria-current="page"' : ''}><b>${dos(i)}</b><span>${esc(n)}</span></a>`).join('');
+// ---------- Qué se muestra según la dirección ----------
+function clubDeLaDireccion() {
+  const id = location.pathname.replace(/^\/+|\/+$/g, '') || location.hash.slice(1); // /cuq (o el viejo #cuq)
+  return datos.clubes.find((c) => c.id === id) || null;
 }
 
 function mostrar() {
-  const id = location.hash.slice(1);
-  club = datos.clubes.find((c) => c.id === id) || null;
+  club = clubDeLaDireccion();
   const raiz = document.documentElement;
-  // Cada club tiñe la página con su color.
-  if (club) { raiz.style.setProperty('--fondo-azul', club.color); raiz.style.setProperty('--azul', club.color); }
-  else { raiz.style.removeProperty('--fondo-azul'); raiz.style.removeProperty('--azul'); }
-  menu(club ? club.id : 'inicio');
-  const ya = raiz.classList.contains('mostrado');
-  if (ya) raiz.classList.remove('mostrado');
+  if (club) {
+    // Cada club tiñe la página con su color y tiene su propia cabecera (sin volver al inicio ni ir a otro club).
+    raiz.style.setProperty('--fondo-azul', club.color);
+    raiz.style.setProperty('--azul', club.color);
+    document.title = `${club.nombre} · Soy de Quilmes`;
+    const g = new Date(datos.generado);
+    document.getElementById('cabecera').innerHTML = `<div class="logo logo-club">${escudo(club)}<span><small>Soy de Quilmes</small><strong>${esc(club.nombre)}</strong></span></div>
+      <p class="edicion">Actualizado ${esc(fechaBreve(g).toLowerCase())}, ${hora(g)} h</p>`;
+  }
   $contenido.innerHTML = club ? vistaClub(club) : vistaPortada();
-  window.scrollTo(0, 0);
   requestAnimationFrame(() => requestAnimationFrame(() => raiz.classList.add('mostrado')));
 }
 
@@ -265,17 +261,15 @@ document.addEventListener('click', (e) => {
 });
 
 // ---------- Arranque ----------
-document.getElementById('ano').textContent = new Date().getFullYear();
 try {
-  const r = await fetch(`data/clubes.json?t=${Date.now()}`, { cache: 'no-store' });
+  const r = await fetch(`/data/clubes.json?t=${Date.now()}`, { cache: 'no-store' });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
   datos = await r.json();
-  const g = new Date(datos.generado);
-  document.getElementById('actualizado').textContent = `Actualizado ${fechaBreve(g).toLowerCase()}, ${hora(g)} h`;
-  addEventListener('hashchange', mostrar);
+  // Dirección vieja con # (ej. /#cuq): la paso a /cuq
+  const viejo = location.hash.slice(1);
+  if (location.pathname === '/' && datos.clubes.some((c) => c.id === viejo)) history.replaceState(null, '', `/${viejo}`);
   mostrar();
 } catch (e) {
-  document.getElementById('actualizado').textContent = 'Sin datos';
   $contenido.innerHTML = `<div class="contenedor error-carga">No se pudieron cargar los datos (${esc(e.message)}). Probá recargar en unos minutos.</div>`;
   document.documentElement.classList.add('mostrado');
 }

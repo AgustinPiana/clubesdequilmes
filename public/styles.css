@@ -503,3 +503,28 @@ img.escudo { aspect-ratio: auto; height: auto; object-fit: contain; }
 .balance-txt b { color: var(--azul); }
 .bloque-pista { margin-top: 18px; }
 .cifras b { white-space: nowrap; }
+
+/* =========================================================
+   Soy de Quilmes: logo, portada y cabecera de club
+   ========================================================= */
+.logo { display: flex; align-items: center; gap: 11px; }
+.logo img { width: 38px; height: 38px; flex: none; }
+.logo small { display: block; font: 700 10.5px/1 var(--f); letter-spacing: .24em; text-transform: uppercase; color: var(--gris); }
+.logo strong { display: block; margin-top: 3px; font: 900 22px/.95 var(--f); font-stretch: 125%; text-transform: uppercase; letter-spacing: -.025em; color: var(--tinta); }
+.logo-club .escudo { width: 40px; height: 40px; object-fit: contain; }
+.logo-club strong { color: var(--fondo-azul); }
+@media (min-width: 900px) {
+  .logo img, .logo-club .escudo { width: 46px; height: 46px; }
+  .logo strong { font-size: 28px; }
+  .logo small { font-size: 11px; }
+}
+/* En el inicio solo está el logo: centrado */
+.cabecera:has(> .logo:only-child) { justify-content: center; padding-top: calc(28px + env(safe-area-inset-top)); }
+
+.inicio { padding: 26px 0 64px; min-height: calc(100vh - 110px); display: flex; align-items: center; }
+.inicio > .contenedor { width: 100%; }
+.inicio-titulo { margin: 0 0 34px; text-align: center; font: 900 clamp(30px, 7vw, 60px)/.95 var(--f); font-stretch: 125%; text-transform: uppercase; letter-spacing: -.035em; color: var(--tinta); }
+.inicio .clubes { border-top: 1px solid var(--tinta); border-bottom: 1px solid var(--tinta); }
+.inicio .club { border-bottom: 0; }
+@media (max-width: 759px) { .inicio .club + .club { border-top: 1px solid var(--linea); } }
+.club-detalle { font-weight: 600; letter-spacing: .02em; }

@@ -1,6 +1,7 @@
-# Agenda de Clubes
+# Soy de Quilmes
 
-Portada con los escudos de los clubes y una página por club con fixture, resultados y tabla de rugby:
+Portada (`/`) con los escudos de los clubes y una página por club (`/cuq`, `/donbosco`) con fixture, resultados y tabla de rugby.
+Cada página de club es independiente: no tiene links al inicio ni a los otros clubes.
 
 | Club | Fuente | Divisiones |
 |---|---|---|
@@ -32,6 +33,8 @@ Página (public/)  →  lee data/clubes.json
 - `clubes[]`: `urbaClubId` (sale de `/api/fixture/filters`), escudo y colores de cada club.
 - `divisiones[]`: qué torneos mostrar de cada club, por un texto del nombre (`- Superior$`, `- Intermedia$`).
 - `externos[]`: clubes que solo aparecen en la portada con un link (Quilmes).
+- `deportes`: lo que dice cada tarjeta de la portada.
+- Las direcciones `/cuq` y `/donbosco` salen del `id` de cada club (`vercel.json` las manda todas a `index.html`).
 
 ## Comandos
 
